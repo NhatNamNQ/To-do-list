@@ -1,5 +1,7 @@
+import TodoList from './components/TodoList/TodoList'
+
 function App() {
-  return <div className='m-auto'>Hello</div>
+  return <TodoList />
 }
 
 export default App
