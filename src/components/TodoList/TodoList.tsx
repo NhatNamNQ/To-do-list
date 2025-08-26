@@ -25,8 +25,8 @@ export default function TodoList() {
   }
 
   const startEditTodo = (id: string) => {
-    const findedTodo = todos.find((todo) => todo.id === id)
-    if (findedTodo) setCurrentTodo(findedTodo)
+    const foundTodo = todos.find((todo) => todo.id === id)
+    if (foundTodo) setCurrentTodo(foundTodo)
   }
 
   const editTodo = (name: string) => {
@@ -41,6 +41,10 @@ export default function TodoList() {
     setCurrentTodo(null)
   }
 
+  const deleteTodo = (id: string) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id))
+  }
+
   return (
     <div className='p-[3rem] bg-[#e5e5e5] min-h-screen'>
       <div className='bg-amber-50 max-w-[22rem] p-[2rem] m-auto border rounded-2xl shadow-md'>
@@ -51,8 +55,15 @@ export default function TodoList() {
           todos={notDoneTodos}
           handleDoneToDo={handleDoneTodo}
           startEditTodo={startEditTodo}
+          deleteTodo={deleteTodo}
         />
-        <TaskList doneTaskList={true} todos={doneTodos} handleDoneToDo={handleDoneTodo} startEditTodo={startEditTodo} />
+        <TaskList
+          doneTaskList={true}
+          todos={doneTodos}
+          handleDoneToDo={handleDoneTodo}
+          startEditTodo={startEditTodo}
+          deleteTodo={deleteTodo}
+        />
       </div>
     </div>
   )

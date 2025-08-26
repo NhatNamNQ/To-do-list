@@ -5,10 +5,11 @@ interface TaskListProps {
   todos: Todo[]
   handleDoneToDo: (id: string, done: boolean) => void
   startEditTodo: (id: string) => void
+  deleteTodo: (id: string) => void
 }
 
 export default function TaskList(props: TaskListProps) {
-  const { doneTaskList, todos, handleDoneToDo, startEditTodo } = props
+  const { doneTaskList, todos, handleDoneToDo, startEditTodo, deleteTodo } = props
   console.log(todos)
 
   const onChangeCheckbox = (idTodo: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +31,9 @@ export default function TaskList(props: TaskListProps) {
               <button className='border rounded hover:bg-gray-100' onClick={() => startEditTodo(todo.id)}>
                 🖊️
               </button>
-              <button className=' border rounded hover:bg-gray-100'>🗑️</button>
+              <button className=' border rounded hover:bg-gray-100' onClick={() => deleteTodo(todo.id)}>
+                🗑️
+              </button>
             </div>
           </div>
         ))}
