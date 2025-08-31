@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import type { Todo } from '../@types/todo.type'
 import Title from '../Title/Title'
 
@@ -12,6 +12,10 @@ interface TaskInputProps {
 export default function TaskInput(props: TaskInputProps) {
   const { addTodo, currentTodo, editTodo, finishEditTodo } = props
   const [name, setName] = useState<string>('')
+
+  const address = useMemo(() => {
+    return { street: 'Pham Van Chieu' }
+  }, [])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -32,9 +36,13 @@ export default function TaskInput(props: TaskInputProps) {
     }
   }
 
+  const handleClickTitle = useCallback((value: string) => {
+    console.log(value)
+  }, [])
+
   return (
     <div>
-      <Title />
+      <Title address={address} handleClickTitle={handleClickTitle} />
       <form className='flex gap-4' onSubmit={handleSubmit}>
         <input
           className='w-full border border-gray-400 rounded-lg p-1 text-sm focus:outline-none focus:border-black'
