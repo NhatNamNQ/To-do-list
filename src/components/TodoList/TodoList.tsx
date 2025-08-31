@@ -77,9 +77,8 @@ export default function TodoList() {
   }
 
   return (
-    <div className='p-[3rem] bg-[#e5e5e5] min-h-screen'>
+    <div className='p-[3rem] bg-[#e5e5e5] min-h-screen min-w-screen'>
       <div className='bg-amber-50 max-w-[22rem] p-[2rem] m-auto border rounded-2xl shadow-md'>
-        <h1 className='text-2xl font-extrabold'>To do list typescript</h1>
         <TaskInput addTodo={addTodo} currentTodo={currentTodo} editTodo={editTodo} finishEditTodo={finishEditTodo} />
         <TaskList
           doneTaskList={false}

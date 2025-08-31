@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Todo } from '../@types/todo.type'
+import Title from '../Title/Title'
 
 interface TaskInputProps {
   addTodo: (name: string) => void
@@ -33,6 +34,7 @@ export default function TaskInput(props: TaskInputProps) {
 
   return (
     <div>
+      <Title />
       <form className='flex gap-4' onSubmit={handleSubmit}>
         <input
           className='w-full border border-gray-400 rounded-lg p-1 text-sm focus:outline-none focus:border-black'

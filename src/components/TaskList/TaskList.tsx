@@ -21,9 +21,9 @@ export default function TaskList(props: TaskListProps) {
       <div className='space-y-3'>
         {todos.map((todo) => (
           <div className='flex items-center justify-between gap-4' key={todo.id}>
-            <div className='flex items-center gap-3'>
+            <div className='flex items-center gap-3 flex-1 min-w-0'>
               <input type='checkbox' checked={todo.done} onChange={onChangeCheckbox(todo.id)} />
-              <span className='truncate'>{todo.name}</span>
+              <span className='break-all'>{todo.name}</span>
             </div>
 
             <div className='flex justify-end w-[30%] gap-2'>
