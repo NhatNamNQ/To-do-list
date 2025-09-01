@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Todo } from '../@types/todo.type'
 import Title from '../Title/Title'
 
@@ -12,6 +12,13 @@ interface TaskInputProps {
 export default function TaskInput(props: TaskInputProps) {
   const { addTodo, currentTodo, editTodo, finishEditTodo } = props
   const [name, setName] = useState<string>('')
+  const inputRef = useRef<HTMLInputElement | null>(null)
+
+  useEffect(() => {
+    if (currentTodo) {
+      inputRef.current?.focus()
+    }
+  }, [currentTodo])
 
   const address = useMemo(() => {
     return { street: 'Pham Van Chieu' }
@@ -49,6 +56,7 @@ export default function TaskInput(props: TaskInputProps) {
           placeholder='caption goes here'
           onChange={onChangeInput}
           value={currentTodo ? currentTodo.name : name}
+          ref={inputRef}
         />
         <button type='submit' className='border border-gray-400 rounded-lg w-[20%]'>
           ➕
