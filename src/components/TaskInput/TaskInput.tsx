@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Todo } from '../@types/todo.type'
 import Title from '../Title/Title'
 
@@ -12,6 +12,7 @@ interface TaskInputProps {
 export default function TaskInput(props: TaskInputProps) {
   const { addTodo, currentTodo, editTodo, finishEditTodo } = props
   const [name, setName] = useState<string>('')
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -22,6 +23,10 @@ export default function TaskInput(props: TaskInputProps) {
       setName('')
     }
   }
+
+  useEffect(() => {
+    if (currentTodo) inputRef.current?.focus()
+  }, [currentTodo])
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
@@ -41,6 +46,7 @@ export default function TaskInput(props: TaskInputProps) {
           placeholder='caption goes here'
           onChange={onChangeInput}
           value={currentTodo ? currentTodo.name : name}
+          ref={inputRef}
         />
         <button type='submit' className='border border-gray-400 rounded-lg w-[20%]'>
           ➕
